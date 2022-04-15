@@ -1,0 +1,40 @@
+version: "3.2"
+
+services:         
+                                                                                                                                                                                            
+  HelloIgnite:
+    image: apacheignite/ignite:2.12.0
+#    network_mode: host
+    networks: 
+      - HelloNetwork
+    environment:
+      CONFIG_URI: "/opt/assets/igniteConfig.xml"
+    volumes:
+      - ./IgniteConfig:/opt/assets #Volume for persistent data.
+    ports:
+      - 10800:10800
+    restart: always
+
+  HelloRedis:
+    image: redis:6.0
+    networks:
+      - HelloNetwork
+    volumes:
+      - HelloVolumeRedis:/data #Volume for persistent data.
+    ports: 
+      - 6379:6379
+    restart: always
+    
+#  MyJob:
+#    image: myjob:latest
+#    networks:
+#      - HelloNetwork
+      
+
+
+
+volumes:
+  HelloVolumeRedis:
+
+networks:
+  HelloNetwork:

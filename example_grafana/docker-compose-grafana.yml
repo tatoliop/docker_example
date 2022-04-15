@@ -1,0 +1,33 @@
+version: "3.2"
+
+networks:
+  my-net:
+
+services:
+  influxdb:
+    image: influxdb:1.7.9
+    environment:
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+      - INFLUXDB_DB=admin
+    volumes:
+     - ./docker-data/influxdb:/var/lib/influxdb
+    networks:
+      - my-net
+    ports:
+      - "8086:8086"
+    restart: always
+    
+  grafana:
+    image: grafana/grafana:6.5.2
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    user: "0"
+    volumes:
+     - ./docker-data/grafana:/var/lib/grafana
+    networks:
+      - admin-net
+    ports:
+      - "3000:3000"
+    restart: always
+    

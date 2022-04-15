@@ -26,6 +26,11 @@
             <artifactId>ignite-core</artifactId>
             <version>${ignite.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.nickrm</groupId>
+            <artifactId>jflux</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

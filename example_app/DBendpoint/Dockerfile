@@ -7,4 +7,5 @@ RUN mvn -f /opt/pom.xml clean compile assembly:single
 FROM openjdk:11
 COPY --from=builder /opt/target/*.jar /opt/assets/job.jar
 WORKDIR /opt/assets
+EXPOSE 1000
 CMD java -jar job.jar
